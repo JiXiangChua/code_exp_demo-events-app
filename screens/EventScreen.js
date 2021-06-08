@@ -16,14 +16,41 @@ function EventsScreen({ navigation }) {
       <Text>Events!</Text>
       <Button
         title="You've won $1M!!! CLICK HERE!!!"
-        onPress={() => navigation.navigate("Dont Get Scammed")} // the navigation name has to match the stack scren name
+        onPress={() => navigation.navigate("EventsSecond")} // the navigation name has to match the stack scren name
       />
     </View>
   );
 }
 
-function EventsSecondScreen() {
-  return <Text>Don't get scammed</Text>;
+function EventsSecondScreen({ navigation }) {
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "lightgreen",
+      }}
+    >
+      <Text>Don't get scammed</Text>
+      <Button
+        onPress={() => navigation.navigate("EventsThird")}
+        title="Third Screen"
+      ></Button>
+    </View>
+  );
+}
+
+function EventsThirdScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Events Third Page!</Text>
+      <Button
+        onPress={() => navigation.popToTop()}
+        title="Back To Top"
+      ></Button>
+    </View>
+  );
 }
 
 const Stack = createStackNavigator();
@@ -33,7 +60,8 @@ export default function EventsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Events" component={EventsScreen} />
-      <Stack.Screen name="Dont Get Scammed" component={EventsSecondScreen} />
+      <Stack.Screen name="EventsSecond" component={EventsSecondScreen} />
+      <Stack.Screen name="EventsThird" component={EventsThirdScreen} />
     </Stack.Navigator>
   );
 }
